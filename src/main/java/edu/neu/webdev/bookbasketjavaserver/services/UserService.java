@@ -25,6 +25,8 @@ public class UserService {
 	@Autowired
 	UserRepository userRepository;
 	
+	HttpSession currentSession;
+	
 
 	@GetMapping("/api/user")
 	public Iterable<User> findAllUsers() {
@@ -40,6 +42,7 @@ public class UserService {
 	public User register(@RequestBody User user, HttpSession session) {
 		
 		session.setAttribute("currentUser", user);
+		currentSession = session;
 		return userRepository.save(user);
 	}
 
@@ -64,6 +67,7 @@ public class UserService {
 		if (cUser != null) {
 			
 			session.setAttribute("currentUser", cUser);
+			currentSession = session;
 			return cUser;
 		}
 		response.setStatus(422);
@@ -73,7 +77,7 @@ public class UserService {
 	@PutMapping("/api/profile")
 	public User updateProfile(@RequestBody User user, HttpSession session){
 
-	User newUser = (User) session.getAttribute("id");
+	User newUser = (User) currentSession.getAttribute("currentUser");
 	int idUser = newUser.getUserId() ;
 	user.setUserId(idUser);
 	userRepository.save(user);
@@ -83,8 +87,7 @@ public class UserService {
 	@GetMapping(value = "/api/logout")
 	public User logout (HttpSession session)
 	{
-	
-	session.invalidate();
+	currentSession=session;
 	return null;
 	}
 	
@@ -92,8 +95,8 @@ public class UserService {
 	public User getProfile(HttpSession session) {
 	User newUser;
 	System.out.println("inside get profile!!");
-	newUser =(User) session.getAttribute("currentUser");
-	System.out.println(newUser.getFirstName());
+	newUser =(User) currentSession.getAttribute("currentUser");
+	
 	return newUser;
 	}
 	
