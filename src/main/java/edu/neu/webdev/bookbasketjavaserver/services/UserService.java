@@ -23,6 +23,8 @@ public class UserService {
 
 	@Autowired
 	UserRepository userRepository;
+	
+	HttpSession currentSession;
 
 	@GetMapping("/api/user")
 	public Iterable<User> findAllUsers() {
@@ -35,7 +37,9 @@ public class UserService {
 	}
 	
 	@PostMapping("/api/register")
-	public User register(@RequestBody User user) {
+	public User register(@RequestBody User user, HttpSession session) {
+		currentSession = session;
+		currentSession.setAttribute("currentUser", user);
 		return userRepository.save(user);
 	}
 
@@ -59,11 +63,20 @@ public class UserService {
 		User cUser = (User) userRepository.findUserByCredential(user.getUsername(), user.getPassword());
 		if (cUser != null) {
 			session.setAttribute("currentUser", cUser);
-
 			return cUser;
 		}
 		response.setStatus(422);
 		return null;
 	}
 
+	
+	@GetMapping("/api/profile")
+	public User getProfile(HttpSession session) {
+	User newUser;
+	System.out.println("inside get profile!!");
+	newUser =(User) currentSession.getAttribute("currentUser");
+	System.out.println(newUser.getFirstName());
+	return newUser;
+	}
+	
 }
