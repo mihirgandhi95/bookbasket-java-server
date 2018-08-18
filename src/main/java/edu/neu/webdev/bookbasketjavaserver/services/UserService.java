@@ -88,13 +88,16 @@ public class UserService {
 	public void logout (HttpSession session)
 	{
 		currentSession.invalidate();
+		session.invalidate();
 	}
 	
 	@GetMapping("/api/profile")
-	public User getProfile(HttpSession session) {
+	public User getProfile(HttpSession session, HttpServletResponse response) {
 	User newUser = null;
 	System.out.println("inside get profile!!");
 	newUser =(User) currentSession.getAttribute("currentUser");
+	if(newUser ==null)
+		response.setStatus(422);
 	return newUser;
 	}
 	
