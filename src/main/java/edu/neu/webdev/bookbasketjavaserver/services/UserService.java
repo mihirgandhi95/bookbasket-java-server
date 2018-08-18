@@ -2,6 +2,9 @@ package edu.neu.webdev.bookbasketjavaserver.services;
 
 import java.util.Optional;
 
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -43,6 +46,19 @@ public class UserService {
 			return data.get();
 		return null;
 
+	}
+	
+	
+	@PostMapping("/api/login")
+	public User login(@RequestBody User user, HttpSession session, HttpServletResponse response) {
+		User cUser = (User) userRepository.findUserByCredential(user.getUsername(), user.getPassword());
+		if (cUser != null) {
+			session.setAttribute("currentUser", cUser);
+
+			return cUser;
+		}
+		response.setStatus(422);
+		return null;
 	}
 
 }
