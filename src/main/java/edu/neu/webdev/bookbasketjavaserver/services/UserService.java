@@ -79,6 +79,13 @@ public class UserService {
 	return user;
 	}
 
+	@GetMapping(value = "/api/logout")
+	public User logout (HttpSession session)
+	{
+	currentSession = session;
+	currentSession.invalidate();
+	return null;
+	}
 	
 	@GetMapping("/api/profile")
 	public User getProfile(HttpSession session) {
