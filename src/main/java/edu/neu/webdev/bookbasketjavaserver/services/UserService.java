@@ -33,6 +33,11 @@ public class UserService {
 	public User createUser(@RequestBody User user) {
 		return userRepository.save(user);
 	}
+	
+	@PostMapping("/api/register")
+	public User register(@RequestBody User user) {
+		return userRepository.save(user);
+	}
 
 	@DeleteMapping("/api/user/{userId}")
 	public void deleteUser(@PathVariable("userId") int id) {
