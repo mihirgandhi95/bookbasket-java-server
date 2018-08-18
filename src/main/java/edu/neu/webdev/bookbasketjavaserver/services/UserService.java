@@ -63,6 +63,7 @@ public class UserService {
 	public User login(@RequestBody User user, HttpSession session, HttpServletResponse response) {
 		User cUser = (User) userRepository.findUserByCredential(user.getUsername(), user.getPassword());
 		if (cUser != null) {
+			currentSession = session;
 			session.setAttribute("currentUser", cUser);
 			return cUser;
 		}
@@ -72,6 +73,7 @@ public class UserService {
 
 	@PutMapping("/api/profile")
 	public User updateProfile(@RequestBody User user, HttpSession session){
+	currentSession = session;
 	User newUser = (User) currentSession.getAttribute("id");
 	int idUser = newUser.getUserId() ;
 	user.setUserId(idUser);
@@ -89,6 +91,7 @@ public class UserService {
 	
 	@GetMapping("/api/profile")
 	public User getProfile(HttpSession session) {
+		currentSession = session;
 	User newUser;
 	System.out.println("inside get profile!!");
 	newUser =(User) currentSession.getAttribute("currentUser");
