@@ -64,9 +64,9 @@ public class NoteService {
 	
 	
 	/**
-	 * Retrieve the list of reviews given by a critic for a particular song
-	 * @param criticId
-	 * @param songId
+	 * Retrieve the list of reviews given by a critic for a particular book
+	 * @param userId
+	 * @param bookId
 	 * @return
 	 */
 	@GetMapping("/api/note/user/{userId}/book/{bookId}")
@@ -75,8 +75,8 @@ public class NoteService {
 	}
 	
 	/**
-	 * Retrieves the list of reviews for a particular song
-	 * @param songId
+	 * Retrieves the list of reviews for a particular book
+	 * @param bookId
 	 * @return
 	 */
 	@GetMapping("/api/note/book/{bookId}")

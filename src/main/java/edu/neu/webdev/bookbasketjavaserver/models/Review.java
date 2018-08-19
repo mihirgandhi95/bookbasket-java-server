@@ -22,18 +22,18 @@ public class Review {
 	private Book book;
 
 	@ManyToOne
-	private User author;
+	private User user;
 
 	private String reviewText;
 	private Double ratings;
 	private Date reviewDate;
 
-	public User getAuthor() {
-		return author;
+	public User getUser() {
+		return user;
 	}
 
-	public void setAuthor(User author) {
-		this.author = author;
+	public void setUser(User user) {
+		this.user = user;
 	}
 
 	public Date getReviewDate() {

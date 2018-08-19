@@ -27,10 +27,10 @@ public class User {
 	private String email;
 	private String phoneNumber;
 	
-	@OneToMany(mappedBy="author")
+	@OneToMany(mappedBy="user")
 	private List<Book> books;
 	
-	@OneToMany(mappedBy="author")
+	@OneToMany(mappedBy="user")
 	@LazyCollection(LazyCollectionOption.FALSE)
 	@JsonIgnore
 	private List<Review> review;
