@@ -12,6 +12,8 @@ import javax.persistence.OneToMany;
 import org.hibernate.annotations.LazyCollection;
 import org.hibernate.annotations.LazyCollectionOption;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 public class Book {
 
@@ -28,6 +30,7 @@ public class Book {
 	
 	@OneToMany(mappedBy="book")
 	@LazyCollection(LazyCollectionOption.FALSE)
+	@JsonIgnore
 	private List<Note> notes;
 
 	public List<Note> getNotes() {

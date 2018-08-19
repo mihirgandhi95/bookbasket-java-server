@@ -18,7 +18,6 @@ public class Note {
 	int id;
 	
 	@ManyToOne
-	@JsonIgnore
 	private Book book;
 	
 	@ManyToOne
