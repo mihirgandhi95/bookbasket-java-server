@@ -81,6 +81,8 @@ public class UserService {
 	int idUser = newUser.getUserId() ;
 	user.setUserId(idUser);
 	userRepository.save(user);
+	session.setAttribute("currentUser", user);
+	currentSession = session;
 	return user;
 	}
 
