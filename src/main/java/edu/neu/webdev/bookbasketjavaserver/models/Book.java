@@ -56,7 +56,17 @@ public class Book {
 
 	@OneToMany(mappedBy = "book")
 	@LazyCollection(LazyCollectionOption.FALSE)
+	@JsonIgnore
 	private List<Review> reviews;
+	
+
+	public List<Review> getReviews() {
+		return reviews;
+	}
+
+	public void setReviews(List<Review> reviews) {
+		this.reviews = reviews;
+	
 
 	public int getId() {
 		return id;
@@ -129,13 +139,6 @@ public class Book {
 	public void setRating(Double rating) {
 		this.rating = rating;
 	}
-
-	public List<Review> getReviews() {
-		return reviews;
-	}
-
-	public void setReviews(List<Review> reviews) {
-		this.reviews = reviews;
-	}
+}
 
 }
