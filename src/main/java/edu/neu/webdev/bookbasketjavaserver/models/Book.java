@@ -20,7 +20,7 @@ public class Book {
 	private int id;
 	private String title;
 	private String description;
-	private String iamgeLink;
+	private String imageLink;
 	private String isbn13;
 	private String isbn10;
 	private String ratings;
@@ -78,12 +78,12 @@ public class Book {
 		this.description = description;
 	}
 
-	public String getIamgeLink() {
-		return iamgeLink;
+	public String getImageLink() {
+		return imageLink;
 	}
 
-	public void setIamgeLink(String iamgeLink) {
-		this.iamgeLink = iamgeLink;
+	public void setImageLink(String imageLink) {
+		this.imageLink = imageLink;
 	}
 
 	public String getIsbn13() {
