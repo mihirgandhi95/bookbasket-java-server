@@ -114,6 +114,7 @@ public class ReviewService {
 
 	@DeleteMapping("/api/review/{reviewId}")
 	public void deleteReview(@PathVariable("reviewId") int id) {
+		
 		reviewRepository.deleteById(id);
 	}
 
