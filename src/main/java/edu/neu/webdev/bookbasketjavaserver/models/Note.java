@@ -16,11 +16,14 @@ public class Note {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	int id;
+	
 	@ManyToOne
 	@JsonIgnore
 	private Book book;
+	
 	@ManyToOne
 	private User user;
+	
 	private String noteComment;
 	private Date noteDate;
 	public int getId() {

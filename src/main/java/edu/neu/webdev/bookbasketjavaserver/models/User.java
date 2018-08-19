@@ -9,6 +9,11 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
+import org.hibernate.annotations.LazyCollection;
+import org.hibernate.annotations.LazyCollectionOption;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 public class User {
 	@Id
@@ -26,9 +31,13 @@ public class User {
 	private List<Book> books;
 	
 	@OneToMany(mappedBy="author")
+	@LazyCollection(LazyCollectionOption.FALSE)
+	@JsonIgnore
 	private List<Review> review;
 	
 	@OneToMany(mappedBy="user")
+	@LazyCollection(LazyCollectionOption.FALSE)
+	@JsonIgnore
 	private List<Note> notes;
 	
 	public int getUserId() {

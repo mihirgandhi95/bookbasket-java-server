@@ -9,6 +9,9 @@ import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
+import org.hibernate.annotations.LazyCollection;
+import org.hibernate.annotations.LazyCollectionOption;
+
 @Entity
 public class Book {
 
@@ -23,6 +26,17 @@ public class Book {
 	private String ratings;
 	private String publishDate;
 	
+	@OneToMany(mappedBy="book")
+	@LazyCollection(LazyCollectionOption.FALSE)
+	private List<Note> notes;
+
+	public List<Note> getNotes() {
+		return notes;
+	}
+
+	public void setNotes(List<Note> notes) {
+		this.notes = notes;
+	}
 
 	public String getPublishDate() {
 		return publishDate;
