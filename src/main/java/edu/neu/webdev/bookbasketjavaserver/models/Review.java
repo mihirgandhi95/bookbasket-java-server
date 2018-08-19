@@ -18,7 +18,6 @@ public class Review {
 	int id;
 
 	@ManyToOne
-	@JsonIgnore
 	private Book book;
 
 	@ManyToOne
