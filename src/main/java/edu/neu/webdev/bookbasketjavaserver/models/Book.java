@@ -27,7 +27,7 @@ public class Book {
 	private String publishDate;
 	
 	@OneToMany(mappedBy="book")
-	
+	@LazyCollection(LazyCollectionOption.FALSE)
 	private List<Note> notes;
 
 	public List<Note> getNotes() {
@@ -52,6 +52,7 @@ public class Book {
 	private Double rating;
 
 	@OneToMany(mappedBy = "book")
+	@LazyCollection(LazyCollectionOption.FALSE)
 	private List<Review> reviews;
 
 	public int getId() {
