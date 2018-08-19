@@ -67,7 +67,7 @@ public class Book {
 	public void setReviews(List<Review> reviews) {
 		this.reviews = reviews;
 	
-
+	}
 	public int getId() {
 		return id;
 	}
@@ -141,4 +141,4 @@ public class Book {
 	}
 }
 
-}
+
