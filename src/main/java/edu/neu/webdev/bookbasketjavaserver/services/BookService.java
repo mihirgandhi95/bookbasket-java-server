@@ -44,5 +44,11 @@ public class BookService {
 		return null;
 
 	}
+	
+	
+	@GetMapping("/api/book/isbn/{isbnId}")
+	public Book findBookByISBNId(@PathVariable("isbnId") String id) {
+		return (Book) bookRepository.findBookWithISBN(id);
+	}
 
 }
