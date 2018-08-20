@@ -41,9 +41,15 @@ public class UserService {
 	@PostMapping("/api/register")
 	public User register(@RequestBody User user, HttpSession session) {
 		
-		session.setAttribute("currentUser", user);
-		currentSession = session;
-		return userRepository.save(user);
+		User newUser = userRepository.findUserByUsername(user.getUsername());
+		if(newUser!= null) {
+			return new User();
+		}
+		else {
+			session.setAttribute("currentUser", user);
+			currentSession = session;
+			return userRepository.save(user);
+		}
 	}
 
 	@DeleteMapping("/api/user/{userId}")
