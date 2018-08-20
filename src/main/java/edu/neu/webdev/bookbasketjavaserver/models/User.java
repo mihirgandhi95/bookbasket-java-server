@@ -26,6 +26,7 @@ public class User {
 	private String lastName;
 	private String email;
 	private String phoneNumber;
+	private String googleId;
 	
 	@OneToMany(mappedBy="user")
 	private List<Book> books;
@@ -87,6 +88,12 @@ public class User {
 	}
 	public void setPhoneNumber(String phoneNumber) {
 		this.phoneNumber = phoneNumber;
+	}
+	public String getGoogleId() {
+		return googleId;
+	}
+	public void setGoogleId(String googleId) {
+		this.googleId = googleId;
 	}
 	
 }

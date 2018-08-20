@@ -78,12 +78,17 @@ public class UserService {
 	public User updateProfile(@RequestBody User user, HttpSession session){
 
 	User newUser = (User) currentSession.getAttribute("currentUser");
-	int idUser = newUser.getUserId() ;
-	user.setUserId(idUser);
-	userRepository.save(user);
-	session.setAttribute("currentUser", user);
+	newUser.setEmail(user.getEmail());
+	newUser.setFirstName(user.getFirstName());
+	newUser.setLastName(user.getLastName());
+	newUser.setPassword(user.getPassword());
+	newUser.setPhoneNumber(user.getPhoneNumber());
+	
+	
+	userRepository.save(newUser);
+	session.setAttribute("currentUser", newUser);
 	currentSession = session;
-	return user;
+	return newUser;
 	}
 
 	@GetMapping(value = "/api/logout")
@@ -102,5 +107,25 @@ public class UserService {
 		response.setStatus(422);
 	return newUser;
 	}
+	
+	
+
+	@GetMapping("/api/checkUser/{googleId}")
+	public User checkUser(@PathVariable("googleId") String id) {
+		System.out.println(id);
+		User nuser = new User();
+		Optional<User> gUser = userRepository.findByGoogleId(id);
+		if(gUser.isPresent())
+		{
+			nuser = gUser.get();
+			
+		}
+		
+			return nuser;
+		
+		
+		
+	}
+	
 	
 }
